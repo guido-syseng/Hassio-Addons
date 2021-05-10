@@ -1,0 +1,24 @@
+{
+    "name": "Notifier",
+    "version": "0.0.1",
+    "slug": "notifier",
+    "description": "Notifier for music & tts messages",
+    "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+    "startup": "application",
+    "boot": "manual",
+    "stdin": true,
+    "audio": true,
+    "options": {
+      "music_test": false,
+      "tts_test": false,
+      "config_www_subdir": "",
+      "tts_lang": ""
+    },
+    "schema": { 
+      "music_test": "bool",
+      "tts_test": "bool",
+      "config_www_subdir": "str?",
+      "tts_lang": "list(en-US|en-GB|de-DE|es-ES|fr-FR|it-IT)"
+    },
+    "host_network": true
+}
