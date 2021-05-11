@@ -14,27 +14,14 @@ My repository with Add-ons for the [Home Assistant (former Hass.io) system](http
 
 More about the Add-ons can be found in their folders.
 
-
-### 🧪 Experimental
-
-Those addons might not be stable at all. Use at your own risk!
-
-* ///
-
-
-### 🕸️ Depreciated
-
-On thoes addons will be not developed anymore. Feel free to fork them.
-
-* ///
-
 ## Installation
 
-To install those Add-ons add this repository in the Home Assistant Add-on store.
-
-Use the following URL to add this repository:
-
-`https://github.com/guido-syseng/Hassio-Addons`
+To install those add-ons, add this repository to the Home Assistant Add-ons Store, like this: 
+Supervisor> Add-on Store> ... DX> Repository> Manage Add-ons Repository
+Then type the URL:
+`https: // github.com / guido-syseng / Hassio-Addons`
+Now you need to hit the ADD button and then follow the steps:
+Supervisor> Add-ons Store > ... DX> Refresh 
 
 ## Support
 

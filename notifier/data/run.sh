@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bashio
 set -e
+DEBUGGING=$(bashio::config 'debugging')
 MUSIC_TEST=$(bashio::config 'music_test')
 TTS_TEST=$(bashio::config 'tts_test')
 CONFIG_WWW_SUBDIR=$(bashio::config 'config_www_subdir')
@@ -76,12 +77,16 @@ if [[ ${#dir} -gt 0 ]]; then
     fi
 fi
 
-if [[ $MUSIC_TEST ]]; then
+if ( $MUSIC_TEST ); then
     # sound sample .mp3 audio
     bashio::log.info "Starting music test..."
     url="zgb.mp3"  
     RC=0
-    (play -q -v 0.2 $url -t alsa) > /dev/null 2>&1 || RC=$?
+    if ( $DEBUGGING ); then 
+        (play -q -v 0.2 $url -t alsa) > /dev/null 2>&1 || RC=$?
+    else
+        (play -q -v 0.2 $url -t alsa) || RC=$?
+    fi
     if [[ $RC -gt 0 ]]; then
         bashio::log.error "Invalid audio" 
     else 
@@ -97,7 +102,7 @@ if [[ ${queryport} -gt 0 ]]; then
     bashio::log.error "Di conseguenza la funzionalità Text To Speek non può essere utilizzata ed è disponibile la sola funzione di segnalazione con files audio .wav o .mp3 ." 
 else
     # sound sample picotts
-    if [[ $TTS_TEST ]]; then
+    if ( $TTS_TEST ); then
         sleep 2
         bashio::log.info "Starting tts test..."
         dh=$(date '+%H');
@@ -107,7 +112,11 @@ else
         encotext="$(echo "$(urlencode "$text")")"
         url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encotext"
         RC=0
-        (play -q -v 0.2 $url -t alsa) > /dev/null 2>&1 || RC=$?
+        if ( $DEBUGGING ); then 
+            (play -q -v 0.2 $url -t alsa) > /dev/null 2>&1 || RC=$?
+        else
+            (play -q -v 0.2 $url -t alsa) || RC=$?
+        fi
         if [[ $RC -gt 0 ]]; then
             bashio::log.error "Invalid tts" 
         else 
@@ -133,7 +142,11 @@ while read -r input; do
     if [[ ${#sound} -gt 0 ]]; then
         url="http://localhost:8123/local/$dir$sound"
         RC=0
-        (play -q -v $parv $url -t alsa) > /dev/null 2>&1 || RC=$?
+        if ( $DEBUGGING ); then 
+            (play -q -v $parv $url -t alsa) > /dev/null 2>&1 || RC=$?
+        else
+            (play -q -v $parv $url -t alsa) || RC=$?
+        fi
         if [[ $RC -gt 0 ]]; then
             bashio::log.error "Invalid audio" 
         else 
@@ -145,7 +158,11 @@ while read -r input; do
         else 
             url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encotext"
             RC=0
-            (play -q -v $parv $url -t alsa) > /dev/null 2>&1 || RC=$?
+            if ( $DEBUGGING ); then 
+                (play -q -v $parv $url -t alsa) > /dev/null 2>&1 || RC=$?
+            else
+                (play -q -v $parv $url -t alsa) || RC=$?
+            fi
             if [[ $RC -gt 0 ]]; then
                 bashio::log.error "Invalid tts" 
             else 

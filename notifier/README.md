@@ -6,13 +6,13 @@ Notifier for Home Assistant.
 
 ## About
 
-How to play sounds and use Tts through a 3.5mm audio jack?
+How to play sounds and use Tts through a 3.5mm audio jack.
 
-For Home Assistant notifications with use of 3.5mm audio jack and loudspeaker directly connected to Rasberry, this add-on install Sox & Pulse Audio (Registered Trademarks).
+For Home Assistant notifications with use of 3.5mm audio jack and loudspeaker directly connected to Rasberry, this add-on install Sox (Sox is a Registered Trademark).
 
-Clarification: only notifications for this addon, no no playlists, no multimedial server for audio and video. The configuration of the player and of tts is only internal to addon, no addition of definitions.
+Clarification: only notifications for this addon, no playlists, no multimedial server for audio and video. The configuration of the player and of tts is only internal to addon, no addition of definitions.
 
-I wanted to connect directly a 3,5" jack between my Raspberry and a loudspeacker to receive notification for events, with option to hear a sound or a speech message and to estabilish the corrent intensity of each audio event.
+I wanted to connect directly a 3.5mm jack between my Raspberry and a loudspeacker to receive notification for events, with option to hear a sound or a speech message and to estabilish the correct intensity of each audio event.
 I updated and improved the **Audio Player**, a creation  of **Dingle - Daniel Dingemanse** and installed also the addon **TtsPico** of **Poeschl** for use a good offline tts, in alternative to Google Tts.
 I installed **Samba**  too for creation of /config/www repository & uploading of sounds and **Configurator** for seeing and tuning the necessary .yaml files.
 

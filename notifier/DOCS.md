@@ -15,9 +15,11 @@ The add-on has a couple of options available. To get the add-on running:
 1. Start the add-on.
 2. Have some patience and wait a couple of minutes.
 
-Select your language for Text to to Speeck via the **Configuration** -> **Tts_lang**.
-Select optionally a subdirectory name for audio mp3 or wav notifications via the **Configuration** -> **config_www_subdir**.
-Mark optionally **Configuration** -> **music_test** or -> **tts_test** for immediate testing
+From the Info panel go to **Configuration**:
+1. From Options select **tts_lang** to one of the languages supported by Pico Tts (preferably previously installed)
+2. From Audio select **output** from `Default` to `Built-in Audio Stereo` 
+3. Select optionally a subdirectory name for audio mp3 or wav notifications via the **config_www_subdir**.
+4. Mark optionally **music_test** or -> **tts_test** for immediate testing, select **debugging**  for extended error messages for problem determination
 
 Notes:
 
@@ -34,41 +36,41 @@ homeassistant:
 
 ## Automations configuration ##
 
-Estabilish events with triggere, the addon acts in the **action** key
+Estabilish events with trigger, the addon acts in the **action** key
 
 ```yaml
   action:
     - service: hassio.addon_stdin
       data: 
-        addon: local_notifier
+        addon: aaaannnn_notifier
         input: 
           vol: 18
           sound: "music.mp3"
           text: "Tts text alternative to audio sound"
 ```
 
-Each line explained
+Explaination of each line 
 
 `service: hassio.addon_stdin`: 
 Use hassio.addon_stdin service to send data over STDIN to an add-on.
 
-`data.addon: local_notifier`: 
-Tells the service to send the command to this add-on, local_notifier is the local name of the notifier addon.
+`data.addon: aaaannnn_notifier`: 
+Tells the service to send the command to this add-on, aaaannnn_notifier is the host name of the notifier addon, **read Hostname in the Info page** of the Notifier.
 
 `data.input: vol`: 
-Alias name created for the volume in the add-on configuration, that estabilish the sound intensity in percent of the audio message notified, valid for each message, sound .wav/,mp3 or vocal tts pico.
+Alias name created in the add-on  for the volume configuration, that estabilish the sound intensity in percent of the audio message notified, valid for each kind of message, sound .wav/,mp3 or vocal tts pico.
 
 **Subsequents Aliases names `sound` and `text`** are alternatives to activate sound or tts, if both are presents it's used the sound alias
 
 `data.input: sound`: 
-Alias name for indication of file name (.naw or .mp3) with the sound to send. 
+Alias name for indication of file name (.Wav or .mp3) with the sound to send. 
 
 `data.input: text`: 
 Alias name created for indication of the text to vocally trasmit for advise or for information (picotts addon prerequisite)
 
 Configuration examples
 
-**1.** To use the Notifier with audio go to **Setup** -> **Automations** and create audio .mp3/.wav notification, follow the example:
+**1.** To use the Notifier with audio go to **Setup** -> **Automations** and then create audio .Wav or .mp3 notification, following the example:
 
 ```yaml
 - id: 'nnnnnnnnnn'
@@ -81,13 +83,13 @@ Configuration examples
   action:
     - service: hassio.addon_stdin
       data: 
-        addon: local_notifier
+        addon: aaaannnn_notifier
         input: 
           vol: 18
           sound: "music.mp3"
 mode: single
 ```
-**2.** To use the Notifier with tts go to **Setup** -> **Automations** and create tts notification, follow the example:
+**2.** To use the Notifier with tts go to **Setup** -> **Automations** and then create tts notification, following the example:
 
 ```yaml
 - id: 'nnnnnnnnnn'
@@ -100,7 +102,7 @@ mode: single
   action:
     - service: hassio.addon_stdin
       data: 
-        addon: local_notifier
+        addon: aaaannnn_notifier
         input: 
           vol: 18
           text: "Congratulations"
