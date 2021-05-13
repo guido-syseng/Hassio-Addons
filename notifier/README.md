@@ -16,7 +16,7 @@ I wanted to connect directly a 3.5mm jack between my Raspberry and a loudspeacke
 
 Other addons recommended in the use of Notifier: *TtsPico* of *Poeschl* for use a good offline tts; *Samba*  for creation of /config/www repository & uploading of sounds; *Configurator* for seeing and tuning the necessary .yaml files.
 
-**Acknowledgment**: for the creation of the Addon I started from the creation of **Dingle - Daniel Dingemanse**, which I updated to the latest version of Hassio and I implemented with the addition of the volume control and making it compatible with a local TTS. 
+**Acknowledgment**: for the realization of the Addon I started from the creation of **Dingle - Daniel Dingemanse**, which I updated to the latest version of Hassio and I implemented with the addition of the volume control and making it compatible with a local TTS. 
 
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
