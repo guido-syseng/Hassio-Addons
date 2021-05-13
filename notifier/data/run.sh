@@ -137,15 +137,17 @@ while read -r input; do
     fi
     input="$(echo "${input//\"/}")"
     input="$(echo "${input//null/}")"
-    volume="$(echo "$input" | jq '.volume')"
+    #volume="$(echo "$input" | jq '.volume')"
+    volume="$(echo "$(keyextract "$input" "volume:")")"
+    parv=1
     if [ ${#volume} -gt 0 ]; then 
         parv="$(echo "scale=2 ; $volume / 100" | bc)"
-    else
-        parv=1
     fi
-    message="$(echo "$input" | jq '.message')"
+    #message="$(echo "$input" | jq '.message')"
+    message="$(echo "$(keyextract "$input" "message:")")"
     encomessage="$(echo "$(urlencode "$message")")"
-    music="$(echo "$input" | jq '.music')"
+    #music="$(echo "$input" | jq '.music')"
+    music="$(echo "$(keyextract "$input" "music:")")"
     if [[ ${#music} -gt 0 ]]; then
         url="http://localhost:8123/local/$dir$music"
         RC=0
@@ -159,7 +161,7 @@ while read -r input; do
         else 
             bashio::log.info "Playing executed"
         fi  
-    elif [[ ${#encotext} -gt 0 ]]; then
+    elif [[ ${#encomessage} -gt 0 ]]; then
         if [[ ${queryport} -gt 0 ]]; then
             bashio::log.error "Parameters error"
         else 
