@@ -19,7 +19,7 @@ More about the Add-ons can be found in their folders.
 To install those add-ons, add this repository to the Home Assistant Add-ons Store, like this: 
 Supervisor> Add-on Store> ... DX> Repository> Manage Add-ons Repository
 Then type the URL:
-`https: // github.com / guido-syseng / Hassio-Addons`
+`https://github.com/guido-syseng/Hassio-Addons`
 Now you need to hit the ADD button and then follow the steps:
 Supervisor> Add-ons Store > ... DX> Refresh 
 
