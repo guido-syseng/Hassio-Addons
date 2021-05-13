@@ -108,9 +108,9 @@ else
         dh=$(date '+%H');
         dm=$(date '+%M');
         caldatint="Pico TTS Demo  $dh   $dm"
-        text="$(echo "$caldatint")"
-        encotext="$(echo "$(urlencode "$text")")"
-        url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encotext"
+        message="$(echo "$caldatint")"
+        encomessage="$(echo "$(urlencode "$message")")"
+        url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encomessage"
         RC=0
         if ( $DEBUGGING ); then 
             (play -q -v 0.2 $url -t alsa) > /dev/null 2>&1 || RC=$?
@@ -127,20 +127,27 @@ fi
 
 ######################## Read from STDIN one notify for one input #######################
 
-while read -r input; do 
+if ( $DEBUGGING ); then 
+    bashio::log.info "Notifier is waiting for commands..."
+fi
+while read -r input; do
+    input="$(echo "$input" | jq --raw-output '.')"
+    if ( $DEBUGGING ); then 
+        bashio::log.info "Notifier is receiving the command: $input"
+    fi
     input="$(echo "${input//\"/}")"
     input="$(echo "${input//null/}")"
-    vol="$(echo "$(keyextract "$input" "vol:")")"
-    if [ ${#vol} -gt 0 ]; then 
-        parv="$(echo "scale=2 ; $vol / 100" | bc)"
+    volume="$(echo "$input" | jq '.volume')"
+    if [ ${#volume} -gt 0 ]; then 
+        parv="$(echo "scale=2 ; $volume / 100" | bc)"
     else
         parv=1
     fi
-    text="$(echo "$(keyextract "$input" "text:")")"
-    encotext="$(echo "$(urlencode "$text")")"
-    sound="$(echo "$(keyextract "$input" "sound:")")"
-    if [[ ${#sound} -gt 0 ]]; then
-        url="http://localhost:8123/local/$dir$sound"
+    message="$(echo "$input" | jq '.message')"
+    encomessage="$(echo "$(urlencode "$message")")"
+    music="$(echo "$input" | jq '.music')"
+    if [[ ${#music} -gt 0 ]]; then
+        url="http://localhost:8123/local/$dir$music"
         RC=0
         if ( $DEBUGGING ); then 
             (play -q -v $parv $url -t alsa) > /dev/null 2>&1 || RC=$?
@@ -154,9 +161,9 @@ while read -r input; do
         fi  
     elif [[ ${#encotext} -gt 0 ]]; then
         if [[ ${queryport} -gt 0 ]]; then
-            bashio::log.error "Parameters error..."
+            bashio::log.error "Parameters error"
         else 
-            url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encotext"
+            url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encomessage"
             RC=0
             if ( $DEBUGGING ); then 
                 (play -q -v $parv $url -t alsa) > /dev/null 2>&1 || RC=$?

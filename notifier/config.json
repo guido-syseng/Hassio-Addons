@@ -1,6 +1,6 @@
 {
     "name": "Notifier",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "slug": "notifier",
     "description": "Notifier for music & tts messages",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],

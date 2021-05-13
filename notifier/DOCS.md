@@ -44,9 +44,9 @@ Estabilish events with trigger, the addon acts in the **action** key
       data: 
         addon: aaaannnn_notifier
         input: 
-          vol: 18
-          sound: "music.mp3"
-          text: "Tts text alternative to audio sound"
+          volume: 18
+          music: "music.mp3"
+          message: "Tts message alternative to audio music"
 ```
 
 Explaination of each line 
@@ -57,16 +57,16 @@ Use hassio.addon_stdin service to send data over STDIN to an add-on.
 `data.addon: aaaannnn_notifier`: 
 Tells the service to send the command to this add-on, aaaannnn_notifier is the host name of the notifier addon, **read Hostname in the Info page** of the Notifier.
 
-`data.input: vol`: 
-Alias name created in the add-on  for the volume configuration, that estabilish the sound intensity in percent of the audio message notified, valid for each kind of message, sound .wav/,mp3 or vocal tts pico.
+`data.input: volume`: 
+Alias name created in the add-on  for the volumeumeume configuration, that estabilish the music intensity in percent of the audio message notified, valid for each kind of message, music .wav/,mp3 or vocal tts pico.
 
-**Subsequents Aliases names `sound` and `text`** are alternatives to activate sound or tts, if both are presents it's used the sound alias
+**Subsequents Aliases names `music` and `message`** are alternatives to activate music or tts, if both are presents it's used the music alias
 
-`data.input: sound`: 
-Alias name for indication of file name (.Wav or .mp3) with the sound to send. 
+`data.input: music`: 
+Alias name for indication of file name (.Wav or .mp3) with the music to send. 
 
-`data.input: text`: 
-Alias name created for indication of the text to vocally trasmit for advise or for information (picotts addon prerequisite)
+`data.input: message`: 
+Alias name created for indication of the message to vocally trasmit for advise or for information (picotts addon prerequisite)
 
 Configuration examples
 
@@ -85,8 +85,8 @@ Configuration examples
       data: 
         addon: aaaannnn_notifier
         input: 
-          vol: 18
-          sound: "music.mp3"
+          volume: 18
+          music: "music.mp3"
 mode: single
 ```
 **2.** To use the Notifier with tts go to **Setup** -> **Automations** and then create tts notification, following the example:
@@ -104,7 +104,7 @@ mode: single
       data: 
         addon: aaaannnn_notifier
         input: 
-          vol: 18
-          text: "Congratulations"
+          volume: 18
+          message: "Congratulations"
 mode: single
 ```

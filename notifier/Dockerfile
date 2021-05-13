@@ -6,6 +6,7 @@ ENV LANG C.UTF-8
 
 # Setup base, install pulseaudio & sox package
 RUN apk add --no-cache \
+    jq \
     pulseaudio \
     alsa-plugins-pulse \
     sox
