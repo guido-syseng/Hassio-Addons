@@ -23,7 +23,7 @@ From the Info panel go to **Configuration**:
 
 Notes:
 
-1. Tts requires `Picotts addon` for tts use in notifications.
+1. Tts requires `Picotts addon` [ https://github.com/Poeschl/Hassio-Addons ] for tts use in notifications.
 2. For audio .mp3 or .wav notifications, you `must` create under /config the /www directory and insert there your audio messages (use samba addon for example)
 3. Please insert the same directory in configuration.yaml, it's not strictly necessary, but so you can view and play for test your messages in the standard `Multimedia browser`
 

@@ -13,8 +13,10 @@ For Home Assistant notifications with use of 3.5mm audio jack and loudspeaker di
 Clarification: only notifications for this addon, no playlists, no multimedial server for audio and video. The configuration of the player and of tts is only internal to addon, no addition of definitions.
 
 I wanted to connect directly a 3.5mm jack between my Raspberry and a loudspeacker to receive notification for events, with option to hear a sound or a speech message and to estabilish the correct intensity of each audio event.
-I updated and improved the **Audio Player**, a creation  of **Dingle - Daniel Dingemanse** and installed also the addon **TtsPico** of **Poeschl** for use a good offline tts, in alternative to Google Tts.
-I installed **Samba**  too for creation of /config/www repository & uploading of sounds and **Configurator** for seeing and tuning the necessary .yaml files.
+
+Other addons recommended in the use of Notifier: *TtsPico* of *Poeschl* for use a good offline tts; *Samba*  for creation of /config/www repository & uploading of sounds; *Configurator* for seeing and tuning the necessary .yaml files.
+
+**Acknowledgment**: for the creation of the Addon I started from the creation of **Dingle - Daniel Dingemanse**, which I updated to the latest version of Hassio and I implemented with the addition of the volume control and making it compatible with a local TTS. 
 
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
