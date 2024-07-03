@@ -83,9 +83,9 @@ if ( $MUSIC_TEST ); then
     url="zgb.mp3"  
     RC=0
     if ( $DEBUGGING ); then 
-        (play -q -v 0.2 $url -t alsa) > /dev/null 2>&1 || RC=$?
+        (play -q -v 0.2 $url -r 32k -b 32 -t alsa) > /dev/null 2>&1 || RC=$?
     else
-        (play -q -v 0.2 $url -t alsa) || RC=$?
+        (play -q -v 0.2 $url -r 32k -b 32 -t alsa) || RC=$?
     fi
     if [[ $RC -gt 0 ]]; then
         bashio::log.error "Invalid audio" 
@@ -113,9 +113,9 @@ else
         url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encomessage"
         RC=0
         if ( $DEBUGGING ); then 
-            (play -q -v 0.2 $url -t alsa) > /dev/null 2>&1 || RC=$?
+            (play -q -v 0.2 $url -r 32k -b 32 -t alsa) > /dev/null 2>&1 || RC=$?
         else
-            (play -q -v 0.2 $url -t alsa) || RC=$?
+            (play -q -v 0.2 $url -r 32k -b 32 -t alsa) || RC=$?
         fi
         if [[ $RC -gt 0 ]]; then
             bashio::log.error "Invalid tts" 
@@ -152,9 +152,9 @@ while read -r input; do
         url="http://localhost:8123/local/$dir$music"
         RC=0
         if ( $DEBUGGING ); then 
-            (play -q -v $parv $url -t alsa) > /dev/null 2>&1 || RC=$?
+            (play -q -v $parv $url -r 32k -b 32 -t alsa) > /dev/null 2>&1 || RC=$?
         else
-            (play -q -v $parv $url -t alsa) || RC=$?
+            (play -q -v $parv $url -r 32k -b 32 -t alsa) || RC=$?
         fi
         if [[ $RC -gt 0 ]]; then
             bashio::log.error "Invalid audio" 
@@ -168,9 +168,9 @@ while read -r input; do
             url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encomessage"
             RC=0
             if ( $DEBUGGING ); then 
-                (play -q -v $parv $url -t alsa) > /dev/null 2>&1 || RC=$?
+                (play -q -v $parv $url -r 32k -b 32 -t alsa) > /dev/null 2>&1 || RC=$?
             else
-                (play -q -v $parv $url -t alsa) || RC=$?
+                (play -q -v $parv $url -r 32k -b 32 -t alsa) || RC=$?
             fi
             if [[ $RC -gt 0 ]]; then
                 bashio::log.error "Invalid tts" 

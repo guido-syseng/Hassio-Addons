@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     jq \
     pulseaudio \
     alsa-plugins-pulse \
-    sox
+    sox 
 
 # Copy data
 COPY data/run.sh /
