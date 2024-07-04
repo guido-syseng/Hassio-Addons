@@ -6,5 +6,8 @@
 
 ## 1.1.0
 
-- Fixed "alsa: underrun" issue, 44.1 kHz audio files now play even after HAOS 12.3/ 12.4 update
+- Fix: 44.1 kHz audio files play even after HAOS 12.3/ 12.4 update
 
+## 1.1.1
+
+- Fix log information
