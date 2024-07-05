@@ -5,6 +5,11 @@ MUSIC_TEST=$(bashio::config 'music_test')
 TTS_TEST=$(bashio::config 'tts_test')
 CONFIG_WWW_SUBDIR=$(bashio::config 'config_www_subdir')
 TTS_LANG=$(bashio::config 'tts_lang')
+# sox sound parameters
+parsoxda="$(echo "-V2")"
+parsoxna="$(echo "-V1")"
+parsoxdb="$(echo "-r 22050 -b 16 -e signed --endian little -t alsa stats")"
+parsoxnb="$(echo "-r 22050 -b 16 -e signed --endian little -t alsa")"
 
 urlencode() {
     # urlencode <string>
@@ -80,12 +85,12 @@ fi
 if ( $MUSIC_TEST ); then
     # sound sample .mp3 audio
     bashio::log.info "Starting music test..."
-    url="zgb.mp3"  
+    url="zgb.wav"  
     RC=0
-    if ( $DEBUGGING ); then 
-        (play -q -V1 -v 0.2 $url -r 32k -b 32 -t alsa stats) || RC=$?
+    if ( $DEBUGGING ); then
+        (play -q $parsoxda -v 0.2 $url $parsoxdb) || RC=$?
     else
-        (play -q -v 0.2 $url -r 32k -b 32 -t alsa) > /dev/null 2>&1 || RC=$?
+        (play -q $parsoxna -v 0.2 $url $parsoxnb) || RC=$?
     fi
     if [[ $RC -gt 0 ]]; then
         bashio::log.error "Invalid audio" 
@@ -98,8 +103,8 @@ fi
 prt=59126
 queryport="$(echo "$(openport "$prt")")"
 if [[ ${queryport} -gt 0 ]]; then
-    bashio::log.error "L'addon di Hass.io PicoTTS non è installato e attivo." 
-    bashio::log.error "Di conseguenza la funzionalità Text To Speek non può essere utilizzata ed è disponibile la sola funzione di segnalazione con files audio .wav o .mp3 ." 
+    bashio::log.error "The Hass.io PicoTTS addon is not installed and active." 
+    bashio::log.error "Consequently, the Text To Speek functionality cannot be used and only the reporting function with .wav or .mp3 audio files is available." 
 else
     # sound sample picotts
     if ( $TTS_TEST ); then
@@ -113,9 +118,9 @@ else
         url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encomessage"
         RC=0
         if ( $DEBUGGING ); then 
-            (play -q -V1 -v 0.2 $url -r 32k -b 32 -t alsa stats) || RC=$?
+            (play -q $parsoxda -v 0.2 $url $parsoxdb) || RC=$?
         else
-            (play -q -v 0.2 $url -r 32k -b 32 -t alsa) > /dev/null 2>&1 || RC=$?
+            (play -q $parsoxna -v 0.2 $url $parsoxnb) || RC=$?
         fi
         if [[ $RC -gt 0 ]]; then
             bashio::log.error "Invalid tts" 
@@ -152,9 +157,9 @@ while read -r input; do
         url="http://localhost:8123/local/$dir$music"
         RC=0
         if ( $DEBUGGING ); then 
-            (play -q -V1 -v $parv $url -r 32k -b 32 -t alsa stats) || RC=$?
+            (play -q $parsoxda -v $parv $url $parsoxdb) || RC=$?
         else
-            (play -q -v $parv $url -r 32k -b 32 -t alsa) > /dev/null 2>&1 || RC=$?
+            (play -q $parsoxna -v $parv $url $parsoxnb) || RC=$?
         fi
         if [[ $RC -gt 0 ]]; then
             bashio::log.error "Invalid audio" 
@@ -168,9 +173,9 @@ while read -r input; do
             url="-t wav http://localhost:59126/speak?lang=$TTS_LANG&text=$encomessage"
             RC=0
             if ( $DEBUGGING ); then 
-                (play -q -V1 -v $parv $url -r 32k -b 32 -t alsa stats) || RC=$?
+                (play -q $parsoxda -v $parv $url $parsoxdb) || RC=$?
             else
-                (play -q -v $parv $url -r 32k -b 32 -t alsa) > /dev/null 2>&1 || RC=$?
+                (play -q $parsoxna -v $parv $url $parsoxnb) || RC=$?
             fi
             if [[ $RC -gt 0 ]]; then
                 bashio::log.error "Invalid tts" 

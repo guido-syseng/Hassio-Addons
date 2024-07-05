@@ -13,9 +13,9 @@ RUN apk add --no-cache \
 
 # Copy data
 COPY data/run.sh /
-COPY data/zgb.mp3 /
+COPY data/zgb.wav /
 RUN chmod a+x /run.sh
-RUN chmod a+x /zgb.mp3
+RUN chmod a+x /zgb.wav
 
 WORKDIR /
 CMD [ "/run.sh" ]

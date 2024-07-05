@@ -11,3 +11,9 @@
 ## 1.1.1
 
 - Fix log information
+
+## 1.1.2
+
+- Optimization of various components
+
+
